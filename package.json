@@ -1,0 +1,29 @@
+{
+  "name": "is-utf8",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://ukoloff@github.com/ukoloff/is-utf8.git"
+  },
+  "keywords": [
+    "utf8",
+    "utf-8",
+    "javascript",
+    "valid",
+    "utf-8-validate"
+  ],
+  "author": {
+    "name": "Stas Ukolov",
+    "email": "ukoloff@gmail.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ukoloff/is-utf8/issues"
+  },
+  "homepage": "https://github.com/ukoloff/is-utf8"
+}
