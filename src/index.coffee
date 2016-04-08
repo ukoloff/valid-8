@@ -16,7 +16,7 @@
       code = code<<6 | n & 0x3F
       continue if --mode
       # Overlong?
-      return unless code >> bits-5
+      return unless code >> bits
       continue
 
     # ASCII: 0xxxxxxx
@@ -32,7 +32,7 @@
       mask >>= 1
       mode++
     return if mode >= @maxBytes
-    bits = 6 + 5*mode
+    bits = 5*mode + 1
 
   # Unfinished
   return if mode
