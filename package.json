@@ -2,9 +2,8 @@
   "name": "is-utf8",
   "version": "0.1.0",
   "description": "Pure JavaScript implementation of UTF-8 validation",
-  "main": "index.js",
   "scripts": {
-    "prepublsih": "node src/compile",
+    "prepublish": "node src/compile",
     "pretest": "node src/compile",
     "test": "node_modules/.bin/mocha"
   },
