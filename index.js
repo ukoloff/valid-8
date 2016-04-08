@@ -1,1 +1,5 @@
-console.log("Hello, world!");
+this.maxBytes = 4;
+
+this.isValidUTF8 = function(buffer) {
+  return true;
+};
