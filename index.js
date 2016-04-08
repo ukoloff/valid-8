@@ -14,7 +14,7 @@ this.isValidUTF8 = (function(_this) {
         if (--mode) {
           continue;
         }
-        if (!(code >> bits - 5)) {
+        if (!(code >> bits)) {
           return;
         }
         continue;
@@ -38,7 +38,7 @@ this.isValidUTF8 = (function(_this) {
       if (mode >= _this.maxBytes) {
         return;
       }
-      bits = 6 + 5 * mode;
+      bits = 5 * mode + 1;
     }
     if (mode) {
       return;
