@@ -1,20 +1,22 @@
 #
 # Maximum length allowed
-# Can be set to 5 or 6
+# Can be set to 5 or 6 (or to 2 or 3)
 #
 @maxBytes = 4
 
 #
 # Validation itself
 #
-@isValidUTF8 = (buffer)->
+@isValidUTF8 = (buffer)=>
   mode = 0  # First byte
-  for i, n in buffer
+  for n, i in buffer
     if mode
       # Continuation: 10xxxxxx
       return if 0xC0 != (0xC0 & n)
-      mode--
       code = code<<6 | n & 0x3F
+      continue if --mode
+      # Overlong?
+      return unless code >> bits-5
       continue
 
     # ASCII: 0xxxxxxx
@@ -24,7 +26,13 @@
     # Continuation: 10xxxxxx
     return unless n & 0x40
     code = 0
-    # ...
+    mode = 1
+    mask = 0x20
+    while n & mask
+      mask >>= 1
+      mode++
+    return if mode >= @maxBytes
+    bits = 6 + 5*mode
 
   # Unfinished
   return if mode
