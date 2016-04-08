@@ -1,31 +1,33 @@
 this.maxBytes = 4;
 
-this.isValidUTF8 = function(buffer) {
-  var code, i, j, len, mode, n;
-  mode = 0;
-  for (n = j = 0, len = buffer.length; j < len; n = ++j) {
-    i = buffer[n];
-    if (mode) {
-      if (0xC0 !== (0xC0 & n)) {
+this.isValidUTF8 = (function(_this) {
+  return function(buffer) {
+    var code, i, j, len, mode, n;
+    mode = 0;
+    for (i = j = 0, len = buffer.length; j < len; i = ++j) {
+      n = buffer[i];
+      if (mode) {
+        if (0xC0 !== (0xC0 & n)) {
+          return;
+        }
+        mode--;
+        code = code << 6 | n & 0x3F;
+        continue;
+      }
+      if (!(n & 0x80)) {
+        continue;
+      }
+      if (n === 0xFF || n === 0xFE || n === 0xC0) {
         return;
       }
-      mode--;
-      code = code << 6 | n & 0x3F;
-      continue;
+      if (!(n & 0x40)) {
+        return;
+      }
+      code = 0;
     }
-    if (!(n & 0x80)) {
-      continue;
-    }
-    if (n === 0xFF || n === 0xFE || n === 0xC0) {
+    if (mode) {
       return;
     }
-    if (!(n & 0x40)) {
-      return;
-    }
-    code = 0;
-  }
-  if (mode) {
-    return;
-  }
-  return true;
-};
+    return true;
+  };
+})(this);

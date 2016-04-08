@@ -1,15 +1,15 @@
 #
 # Maximum length allowed
-# Can be set to 5 or 6
+# Can be set to 5 or 6 (or to 2 & 3)
 #
 @maxBytes = 4
 
 #
 # Validation itself
 #
-@isValidUTF8 = (buffer)->
+@isValidUTF8 = (buffer)=>
   mode = 0  # First byte
-  for i, n in buffer
+  for n, i in buffer
     if mode
       # Continuation: 10xxxxxx
       return if 0xC0 != (0xC0 & n)
