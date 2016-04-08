@@ -1,9 +1,11 @@
 {
   "name": "is-utf8",
   "version": "0.1.0",
-  "description": "",
+  "description": "Pure JavaScript implementation of UTF-8 validation",
   "main": "index.js",
   "scripts": {
+    "prepublsih": "node src/compile",
+    "pretest": "node src/compile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/ukoloff/is-utf8/issues"
   },
-  "homepage": "https://github.com/ukoloff/is-utf8"
+  "homepage": "https://github.com/ukoloff/is-utf8",
+  "devDependencies": {
+    "coffee-script": "^1.10.0"
+  }
 }
