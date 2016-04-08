@@ -14,6 +14,9 @@ this.isValidUTF8 = (function(_this) {
         if (--mode) {
           continue;
         }
+        if (!(code >> bits - 5)) {
+          return;
+        }
         continue;
       }
       if (!(n & 0x80)) {

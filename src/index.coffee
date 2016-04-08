@@ -1,6 +1,6 @@
 #
 # Maximum length allowed
-# Can be set to 5 or 6 (or to 2 & 3)
+# Can be set to 5 or 6 (or to 2 or 3)
 #
 @maxBytes = 4
 
@@ -16,7 +16,7 @@
       code = code<<6 | n & 0x3F
       continue if --mode
       # Overlong?
-      # ...
+      return unless code >> bits-5
       continue
 
     # ASCII: 0xxxxxxx
