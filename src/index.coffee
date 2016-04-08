@@ -5,6 +5,11 @@
 @maxBytes = 4
 
 #
+# Exclude UNI_SUR_HIGH_START - UNI_SUR_LOW_END
+#
+@exclude = true
+
+#
 # Validation itself
 #
 @isValidUTF8 = (buffer)=>
@@ -15,6 +20,10 @@
       return if 0xC0 != (0xC0 & n)
       code = code<<6 | n & 0x3F
       continue if --mode
+      # Too big?
+      return if @maxBytes<5 and code>0x0010FFFF
+      # Exclude?
+      return if @exclude and 0xD800<=code<=0xDFFF
       # Overlong?
       return unless code >> bits
       continue

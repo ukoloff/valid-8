@@ -1,5 +1,7 @@
 this.maxBytes = 4;
 
+this.exclude = true;
+
 this.isValidUTF8 = (function(_this) {
   return function(buffer) {
     var bits, code, i, j, len, mask, mode, n;
@@ -13,6 +15,12 @@ this.isValidUTF8 = (function(_this) {
         code = code << 6 | n & 0x3F;
         if (--mode) {
           continue;
+        }
+        if (_this.maxBytes < 5 && code > 0x0010FFFF) {
+          return;
+        }
+        if (_this.exclude && (0xD800 <= code && code <= 0xDFFF)) {
+          return;
         }
         if (!(code >> bits)) {
           return;
