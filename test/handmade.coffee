@@ -16,3 +16,21 @@ describe 'ASCII', ->
 
     expect isUtf8.isValidUTF8 new Buffer [0x7F..0]
     .to.be.ok()
+
+describe 'Cyrillic', ->
+  it 'is valid', ->
+
+    expect isUtf8.isValidUTF8 new Buffer 'Однажды в студёную зимнюю пору'
+    .to.be.ok()
+
+describe 'Glass', ->
+  it 'is eatable', ->
+
+    expect isUtf8.isValidUTF8 fs.readFileSync path.join __dirname, 'glass.html'
+    .to.be.ok()
+
+describe 'Coffee', ->
+  it 'is drinkable', ->
+
+    expect isUtf8.isValidUTF8 fs.readFileSync __filename
+    .to.be.ok()

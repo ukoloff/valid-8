@@ -17,7 +17,7 @@
   for n, i in buffer
     if mode
       # Continuation: 10xxxxxx
-      return if 0xC0 != (0xC0 & n)
+      return if 0x80 != (0xC0 & n)
       code = code<<6 | n & 0x3F
       continue if --mode
       # Too big?
@@ -34,7 +34,6 @@
     return if n in [0xFF, 0xFE, 0xC0, 0xC1]
     # Continuation: 10xxxxxx
     return unless n & 0x40
-    code = 0
     mode = 1
     mask = 0x20
     while n & mask
