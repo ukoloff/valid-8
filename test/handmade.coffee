@@ -22,3 +22,15 @@ describe 'Cyrillic', ->
 
     expect isUtf8.isValidUTF8 new Buffer 'Однажды в студёную зимнюю пору'
     .to.be.ok()
+
+describe 'Glass', ->
+  it 'is eatable', ->
+
+    expect isUtf8.isValidUTF8 fs.readFileSync path.join __dirname, 'glass.html'
+    .to.be.ok()
+
+describe 'Coffee', ->
+  it 'is drinkable', ->
+
+    expect isUtf8.isValidUTF8 fs.readFileSync __filename
+    .to.be.ok()
