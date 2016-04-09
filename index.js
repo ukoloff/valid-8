@@ -10,7 +10,7 @@ this.isValidUTF8 = (function(_this) {
     for (i = j = 0, len = buffer.length; j < len; i = ++j) {
       n = buffer[i];
       if (mode) {
-        if (0xC0 !== (0xC0 & n)) {
+        if (0x80 !== (0xC0 & n)) {
           return;
         }
         code = code << 6 | n & 0x3F;
@@ -37,7 +37,6 @@ this.isValidUTF8 = (function(_this) {
       if (!(n & 0x40)) {
         return;
       }
-      code = 0;
       mode = 1;
       mask = 0x20;
       while (n & mask) {
