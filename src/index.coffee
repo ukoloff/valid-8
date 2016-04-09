@@ -25,7 +25,7 @@
       # Exclude?
       return if @exclude and 0xD800<=code<=0xDFFF
       # Overlong?
-      return unless code >> bits
+      return unless code >> mask
       continue
 
     # ASCII: 0xxxxxxx
@@ -41,7 +41,8 @@
       mask >>= 1
       mode++
     return if mode >= @maxBytes
-    bits = 5*mode + 1
+    code = n & mask-1
+    mask = 5*mode + 1
 
   # Unfinished
   return if mode

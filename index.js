@@ -4,7 +4,7 @@ this.exclude = true;
 
 this.isValidUTF8 = (function(_this) {
   return function(buffer) {
-    var bits, code, i, j, len, mask, mode, n;
+    var code, i, j, len, mask, mode, n;
     mode = 0;
     for (i = j = 0, len = buffer.length; j < len; i = ++j) {
       n = buffer[i];
@@ -22,7 +22,7 @@ this.isValidUTF8 = (function(_this) {
         if (_this.exclude && (0xD800 <= code && code <= 0xDFFF)) {
           return;
         }
-        if (!(code >> bits)) {
+        if (!(code >> mask)) {
           return;
         }
         continue;
@@ -46,7 +46,8 @@ this.isValidUTF8 = (function(_this) {
       if (mode >= _this.maxBytes) {
         return;
       }
-      bits = 5 * mode + 1;
+      code = n & mask - 1;
+      mask = 5 * mode + 1;
     }
     if (mode) {
       return;
