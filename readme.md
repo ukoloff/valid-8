@@ -1,5 +1,7 @@
 # is-utf8
 
+[![Build Status](https://travis-ci.org/ukoloff/is-utf8.svg?branch=master)](https://travis-ci.org/ukoloff/is-utf8)
+
 Pure JavaScript implementation of UTF-8 validation.
 
 To be drop-in replacement for
