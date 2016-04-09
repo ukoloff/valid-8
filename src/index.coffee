@@ -30,8 +30,8 @@
 
     # ASCII: 0xxxxxxx
     continue unless n & 0x80
-    # 8 bytes, 7 bytes (avoid 64-bit math), overlong 2 bytes
-    return if n in [0xFF, 0xFE, 0xC0]
+    # 8 bytes, 7 bytes (avoid 64-bit math), overlong 2 bytes (2 cases)
+    return if n in [0xFF, 0xFE, 0xC0, 0xC1]
     # Continuation: 10xxxxxx
     return unless n & 0x40
     code = 0

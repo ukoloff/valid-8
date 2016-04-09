@@ -31,7 +31,7 @@ this.isValidUTF8 = (function(_this) {
       if (!(n & 0x80)) {
         continue;
       }
-      if (n === 0xFF || n === 0xFE || n === 0xC0) {
+      if (n === 0xFF || n === 0xFE || n === 0xC0 || n === 0xC1) {
         return;
       }
       if (!(n & 0x40)) {
