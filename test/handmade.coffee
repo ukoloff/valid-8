@@ -16,3 +16,9 @@ describe 'ASCII', ->
 
     expect isUtf8.isValidUTF8 new Buffer [0x7F..0]
     .to.be.ok()
+
+describe 'Cyrillic', ->
+  it 'is valid', ->
+
+    expect isUtf8.isValidUTF8 new Buffer 'Однажды в студёную зимнюю пору'
+    .to.be.ok()
