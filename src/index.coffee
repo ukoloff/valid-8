@@ -36,7 +36,8 @@ valid8 = (buffer)->
 
 #-- Configruration
 
-valid8.isValidUTF8 = valid8 # Emulate utf-8-validate
+valid8.Validation =     # Emulate utf-8-validate
+  isValidUTF8: valid8
 
 #
 # Maximum length allowed. Can be set to 5 or 6 (or to 1, 2 or 3)

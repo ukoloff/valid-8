@@ -53,7 +53,9 @@
     return true;
   };
 
-  valid8.isValidUTF8 = valid8;
+  valid8.Validation = {
+    isValidUTF8: valid8
+  };
 
   valid8.maxBytes = 4;
 
