@@ -1,0 +1,33 @@
+{
+  "name": "valid-8",
+  "description": "Pure JavaScript implementation of UTF-8 validation",
+  "main": "index.js",
+  "authors": [
+    {
+      "name": "Stas Ukolov",
+      "email": "ukoloff@gmail.com"
+    }
+  ],
+  "license": "ISC",
+  "keywords": [
+    "utf8",
+    "utf-8",
+    "javascript",
+    "valid",
+    "utf-8-validate"
+  ],
+  "homepage": "https://github.com/ukoloff/valid-8",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src",
+    "test",
+    "tests"
+  ]
+}
