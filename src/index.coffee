@@ -50,7 +50,7 @@ valid8.surrogates = false
 
 #-- Registering
 
-if 'undefined' != typeof module and module.exports
+if module?.exports
   module.exports = valid8
 else if 'function' == typeof define and define.amd
   define -> valid8

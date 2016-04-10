@@ -59,7 +59,7 @@
 
   valid8.surrogates = false;
 
-  if ('undefined' !== typeof module && module.exports) {
+  if (typeof module !== "undefined" && module !== null ? module.exports : void 0) {
     module.exports = valid8;
   } else if ('function' === typeof define && define.amd) {
     define(function() {
