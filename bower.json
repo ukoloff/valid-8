@@ -18,6 +18,8 @@
   ],
   "homepage": "https://github.com/ukoloff/valid-8",
   "moduleType": [
+    "amd",
+    "globals",
     "node"
   ],
   "ignore": [
