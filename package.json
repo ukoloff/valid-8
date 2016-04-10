@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "Pure JavaScript implementation of UTF-8 validation",
   "scripts": {
-    "prepublish": "node_modules/.bin/coffee -cbo . src",
-    "pretest": "node_modules/.bin/coffee -cbo . src",
+    "prepublish": "node_modules/.bin/coffee -o . src",
+    "pretest": "node_modules/.bin/coffee -o . src",
     "test": "node_modules/.bin/mocha"
   },
   "repository": {
