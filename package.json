@@ -1,5 +1,5 @@
 {
-  "name": "is-utf8",
+  "name": "valid-8",
   "version": "0.1.0",
   "description": "Pure JavaScript implementation of UTF-8 validation",
   "scripts": {
