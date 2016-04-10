@@ -1,6 +1,6 @@
 # valid-8
 
-[![Build Status](https://travis-ci.org/ukoloff/is-utf8.svg?branch=master)](https://travis-ci.org/ukoloff/is-utf8)
+[![Build Status](https://travis-ci.org/ukoloff/valid-8.svg?branch=master)](https://travis-ci.org/ukoloff/valid-8)
 [![npm version](https://badge.fury.io/js/valid-8.svg)](https://badge.fury.io/js/valid-8)
 
 Pure JavaScript implementation of UTF-8 validation.
