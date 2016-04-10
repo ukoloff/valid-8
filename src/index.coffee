@@ -1,18 +1,4 @@
-#
-# Maximum length allowed
-# Can be set to 5 or 6 (or to 2 or 3)
-#
-@maxBytes = 4
-
-#
-# Exclude UNI_SUR_HIGH_START - UNI_SUR_LOW_END
-#
-@exclude = true
-
-#
-# Validation itself
-#
-@isValidUTF8 = (buffer)=>
+module.exports = fn = (buffer)->
   mode = 0  # First byte
   for n, i in buffer
     if mode
@@ -21,9 +7,9 @@
       code = code<<6 | n & 0x3F
       continue if --mode
       # Too big?
-      return if @maxBytes<5 and code>0x0010FFFF
+      return if fn.maxBytes<5 and code>0x0010FFFF
       # Exclude?
-      return if @exclude and 0xD800<=code<=0xDFFF
+      return if !fn.surrogates and 0xD800<=code<=0xDFFF
       # Overlong?
       return unless code >> mask
       continue
@@ -39,7 +25,7 @@
     while n & mask
       mask >>= 1
       mode++
-    return if mode >= @maxBytes
+    return if mode >= fn.maxBytes
     code = n & mask-1
     mask = 5*mode + 1
 
@@ -47,3 +33,19 @@
   return if mode
   # Valid!!!
   true
+
+#-- Configruration
+
+fn.isValidUTF8 = fn # Emulate utf-8-validate
+
+#
+# Maximum length allowed. Can be set to 5 or 6 (or to 1, 2 or 3)
+#
+fn.maxBytes = 4
+
+#
+# Allow Unicode surrogates (0xD800-0xDFFF)
+#
+fn.surrogates = false
+
+#-- That's all folks
