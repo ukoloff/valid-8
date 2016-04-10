@@ -1,4 +1,4 @@
-# is-utf8
+# valid-8
 
 [![Build Status](https://travis-ci.org/ukoloff/is-utf8.svg?branch=master)](https://travis-ci.org/ukoloff/is-utf8)
 
