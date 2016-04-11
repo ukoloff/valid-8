@@ -2,29 +2,42 @@ fs = require 'fs'
 path = require 'path'
 assert = require 'assert'
 valid8 = require '..'
+random = require './random'
+
+buffers = []
+
+test = (buffer)->
+  buffer = new Buffer buffer unless buffer instanceof Buffer
+  buffers.push buffer = buffer
+  assert valid8 buffer
 
 describe 'Empty buffer', ->
   it 'is valid', ->
-    assert valid8 new Buffer 0
+    test 0
 
 describe 'ASCII', ->
   it 'is valid', ->
     for i in [0..0x7F]
-      assert valid8 new Buffer [i]
+      test Buffer [i]
 
-    assert valid8 new Buffer [0x7F..0]
+    test [0x7F..0]
 
 describe 'Cyrillic', ->
   it 'is valid', ->
 
-    assert valid8 new Buffer 'Однажды в студёную зимнюю пору'
+    test 'Однажды в студёную зимнюю пору'
 
 describe 'Glass', ->
   it 'is eatable', ->
 
-    assert valid8 fs.readFileSync path.join __dirname, 'glass.html'
+    test fs.readFileSync path.join __dirname, 'glass.html'
 
 describe 'Coffee', ->
   it 'is drinkable', ->
 
-    assert valid8 fs.readFileSync __filename
+    test fs.readFileSync __filename
+
+describe "Buffer", ->
+  it "is inspected entirely", ->
+    for b in buffers
+      assert not valid8 Buffer.concat [b, new Buffer [random 128, 255]]
