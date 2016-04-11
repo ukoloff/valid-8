@@ -40,4 +40,12 @@ describe 'Coffee', ->
 describe "Buffer", ->
   it "is inspected entirely", ->
     for b in buffers
-      assert not valid8 Buffer.concat [b, new Buffer [random 128, 255]]
+      assert not valid8 Buffer.concat [
+        b,
+        new Buffer [random 128, 255]
+      ]
+      assert not valid8 Buffer.concat [
+        b,
+        new Buffer [random 128, 255],
+        random.pick buffers
+      ]
