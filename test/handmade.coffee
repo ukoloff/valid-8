@@ -37,6 +37,10 @@ describe 'Coffee', ->
 
     test fs.readFileSync __filename
 
+describe "Pile of poo", ->
+  it "is valid either", ->
+    test "💩" # "\u{1F4A9}"    # https://mathiasbynens.be/notes/javascript-unicode
+
 describe "Buffer", ->
   it "is inspected entirely", ->
     for b in buffers
