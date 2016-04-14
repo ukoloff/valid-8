@@ -25,14 +25,8 @@ bits = [7, 8, 11, 0xD7FF, '', 0xDFFF, 16, 0x10FFFF]
 .filter (range)->
   'number' == typeof(range.min + range.max)
 
-utf8 = random.utf8 = (n = 16)->
+random.utf8 = (n = 16)->
   z = for i in [1..n]
     z = bits[random 0, bits.length - 1]
     random z.min, z.max
   String.fromCharCode.apply String, z
-
-describe 'Random utf8 strings', ->
-  it 'are valid', ->
-    for i in [1..27]
-      assert valid8 r = new Buffer utf8 20
-      assert not valid8 Buffer.concat [r, new Buffer [random 128, 255]]
