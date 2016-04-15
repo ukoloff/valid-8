@@ -4,7 +4,7 @@
 
 module.exports =
 utf8 = (code)->
-  code &= 0xFFFF
+  code &= 0xFFFFFFFF
   # ASCII ?
   return [code] unless code >> 7
   r = []
