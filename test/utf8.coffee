@@ -1,4 +1,4 @@
-assert = require 'assert'
+assert = require './assert'
 
 utf8 = require './28'
 random = require './random'

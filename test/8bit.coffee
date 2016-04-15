@@ -1,4 +1,4 @@
-assert = require 'assert'
+assert = require './assert'
 valid8 = require '..'
 random = require './random'
 
