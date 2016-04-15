@@ -1,36 +1,55 @@
 fs = require 'fs'
 path = require 'path'
-expect = require 'expect.js'
+assert = require 'assert'
 valid8 = require '..'
+random = require './random'
+
+buffers = []
+
+test = (buffer)->
+  buffer = new Buffer buffer unless Buffer.isBuffer buffer
+  buffers.push buffer = buffer
+  assert valid8 buffer
 
 describe 'Empty buffer', ->
   it 'is valid', ->
-    expect valid8 new Buffer 0
-    .to.be.ok()
+    test 0
 
 describe 'ASCII', ->
   it 'is valid', ->
     for i in [0..0x7F]
-      expect valid8 new Buffer [i]
-      .to.be.ok()
+      test Buffer [i]
 
-    expect valid8 new Buffer [0x7F..0]
-    .to.be.ok()
+    test [0x7F..0]
 
 describe 'Cyrillic', ->
   it 'is valid', ->
 
-    expect valid8 new Buffer 'Однажды в студёную зимнюю пору'
-    .to.be.ok()
+    test 'Однажды в студёную зимнюю пору'
 
 describe 'Glass', ->
   it 'is eatable', ->
 
-    expect valid8 fs.readFileSync path.join __dirname, 'glass.html'
-    .to.be.ok()
+    test fs.readFileSync path.join __dirname, 'glass.html'
 
 describe 'Coffee', ->
   it 'is drinkable', ->
 
-    expect valid8 fs.readFileSync __filename
-    .to.be.ok()
+    test fs.readFileSync __filename
+
+describe "Pile of poo", ->
+  it "is valid either", ->
+    test "💩" # "\u{1F4A9}"    # https://mathiasbynens.be/notes/javascript-unicode
+
+describe "Buffer", ->
+  it "is inspected entirely", ->
+    for b in buffers
+      assert not valid8 Buffer.concat [
+        b,
+        new Buffer [random 128, 255]
+      ]
+      assert not valid8 Buffer.concat [
+        b,
+        new Buffer [random 128, 255],
+        random.pick buffers
+      ]
