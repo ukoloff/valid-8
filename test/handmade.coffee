@@ -7,7 +7,7 @@ random = require './random'
 buffers = []
 
 test = (buffer)->
-  buffer = new Buffer buffer unless buffer instanceof Buffer
+  buffer = new Buffer buffer unless Buffer.isBuffer buffer
   buffers.push buffer = buffer
   assert valid8 buffer
 

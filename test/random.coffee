@@ -32,7 +32,7 @@ random.utf8 = utf8 = (n = 16)->
   String.fromCharCode.apply String, z
 
 random.test4 = (good, buffer)->
-  buffer = new Buffer buffer  unless buffer instanceof Buffer
+  buffer = new Buffer buffer  unless Buffer.isBuffer buffer
   for z in [0..3]
     x = [buffer]
     x.unshift new Buffer utf8 27  if x & 1
