@@ -23,4 +23,4 @@ utf8.overlong = (array)->
   return unless 0<(x=array.length)<7
   if 1==x
     x = array[0]
-    return [x >> 6 | 0xC0, x & 0x3F]
+    return [x >> 6 | 0xC0, x & 0x3F | 0x80]
