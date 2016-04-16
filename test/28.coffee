@@ -46,7 +46,7 @@ utf8.overlong = (buffer)->
     when 7
       return
   # Add first byte to multi-byte
-  buffer = [].slice buffer
+  buffer = [].slice.call buffer
   x = 1 << 7 - x
   buffer[0] &= 0x7F + x
   buffer.unshift 0x100 - x
