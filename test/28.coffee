@@ -15,12 +15,21 @@ utf8 = (code)->
     continue if code >> mask--
     r.unshift code | 256 - (1 << mask+2)
     return r
+#
+# Check whether all bits in a sequence set correctly
+#
+utf8.valid =
+valid = (array)->
 
 #
 # Make overlong sequence from valid one
 #
 utf8.overlong = (array)->
-  return unless 0<(x=array.length)<7
-  if 1==x
-    x = array[0]
-    return [x >> 6 | 0xC0, x & 0x3F | 0x80]
+  return unless valid array
+  switch array.length
+    when 1
+      x = array[0]
+      return [x >> 6 | 0xC0, x & 0x3F | 0x80]
+    when 7
+      return
+    else
