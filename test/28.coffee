@@ -12,9 +12,10 @@ utf8 = (code)->
   loop
     buffer.unshift code & 0x3F | 0x80
     code >>>= 6
-    continue if code >> mask--
-    buffer.unshift code | 256 - (1 << mask+2)
-    return buffer
+    break unless code >> mask--
+  # First byte
+  buffer.unshift code | 256 - (1 << mask+2)
+  return buffer
 
 #
 # Check whether all bits in a sequence set correctly
@@ -44,6 +45,7 @@ utf8.overlong = (buffer)->
       return [x >> 6 | 0xC0, x & 0x3F | 0x80]
     when 7
       return
+  # Add first byte to multi-byte
   buffer = [].slice buffer
   buffer[0] &= 0xFF
   buffer.unshift 0xC0
