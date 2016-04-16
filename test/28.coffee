@@ -29,7 +29,7 @@ valid = (buffer)->
     return !(buffer[0] >> 7)
   # First byte
   return if buffer[0] >>> 7 - x != (1 << x) - 1 << 1
-  for i in [1..x]
+  for i in [2..x]
     # Continuation?
     return if buffer[i-1] >> 6 != 2
   true
@@ -47,6 +47,7 @@ utf8.overlong = (buffer)->
       return
   # Add first byte to multi-byte
   buffer = [].slice buffer
-  buffer[0] &= 0xFF
-  buffer.unshift 0xC0
+  x = 1 << 7 - x
+  buffer[0] &= 0x7F + x
+  buffer.unshift 0x100 - x
   buffer

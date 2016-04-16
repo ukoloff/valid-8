@@ -4,7 +4,8 @@ utf8 = require './28'
 random = require './random'
 
 test8 = (z)->
-  assert new Buffer(utf8 z).toString() == String.fromCharCode z
+  assert new Buffer(a = utf8 z).toString() == String.fromCharCode z
+  assert utf8.valid a
 
 describe 'UTF-8', ->
   it 'is generated correctly', ->
