@@ -1,6 +1,6 @@
 fs = require 'fs'
 path = require 'path'
-assert = require 'assert'
+assert = require './assert'
 valid8 = require '..'
 random = require './random'
 
