@@ -6,7 +6,7 @@ valid8 = require '..'
 describe 'Trimmed sequences', ->
   it 'are invalid', ->
     x=[7]
-    .concat (5*i+1 for i in [2..6])
+    .concat(5*i+1 for i in [2..6])
     .concat [32]
     .map (bits)->
       (2 << bits - 1) - 1 >>> 0
