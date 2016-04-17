@@ -69,5 +69,5 @@ utf8.code = (buffer)->
     code = if i
       code << 6 | n & 0x3F
     else
-      buffer[0] & (1 << 7 - buffer.length) - 1
+      n & (1 << 7 - buffer.length) - 1
   code
