@@ -5,7 +5,7 @@ valid8 = require '..'
 
 describe 'Trimmed sequences', ->
   it 'are invalid', ->
-    x=[7]
+    [7]
     .concat(5*i+1 for i in [2..6])
     .concat [32]
     .map (bits)->
@@ -23,7 +23,7 @@ describe 'Trimmed sequences', ->
           ranges
       res
     .forEach (range)->
-      for i in [1..27]
+      for i in [1..12]
         z = random range.min+1, range.max
         assert utf8.valid q = utf8 z
         assert z == utf8.code q
