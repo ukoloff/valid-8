@@ -17,5 +17,4 @@ cache:
   - node_modules
 
 env:
-  global:
-    utf: 8
+  utf: 8
