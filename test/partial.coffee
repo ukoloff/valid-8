@@ -5,6 +5,31 @@ valid8 = require '..'
 
 describe 'Trimmed sequences', ->
   it 'are invalid', ->
+    x=[7]
+    .concat (5*i+1 for i in [2..6])
+    .concat [32]
+    .map (bits)->
+      (2 << bits - 1) - 1 >>> 0
+    .reduce (ranges, n)->
+      res = if ranges.length
+        ranges
+      else
+        []
+      res.push
+        max: n
+        min: if ranges.length
+          ranges[ranges.length - 1].max
+        else
+          ranges
+      res
+    .forEach (range)->
+      for i in [1..27]
+        z = random range.min+1, range.max
+        assert utf8.valid q = utf8 z
+        assert z == utf8.code q
+        slices q, (slice)->
+          assert not utf8.valid slice
+          random.test4 false, slice
 
 slices = (array, fn)->
   for z, i in array
@@ -14,5 +39,3 @@ slices = (array, fn)->
       fn? z
       z.pop()
   return
-
-slices "1 2 3 4 5".split(' '), (a)->console.log a
