@@ -18,7 +18,8 @@ describe 'Overlongs', ->
     .forEach (range)->
       for i in [1..27]
         z = random range.min, range.max - 1
-        assert z == utf8.code q = utf8 z
+        assert utf8.valid q = utf8 z
+        assert z == utf8.code q
         utf8.overlongs q
         .forEach (overlong)->
           assert utf8.valid overlong
