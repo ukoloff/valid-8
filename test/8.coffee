@@ -70,4 +70,4 @@ utf8.code = (buffer)->
       code << 6 | n & 0x3F
     else
       n & (1 << 7 - buffer.length) - 1
-  code
+  code >>> 0  # Unsigned int

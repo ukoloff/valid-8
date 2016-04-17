@@ -5,7 +5,8 @@ valid8 = require '..'
 
 describe 'Overlongs', ->
   it 'are invalid', ->
-    [7].concat (5*i+1 for i in [2..6])
+    [7]
+    .concat (5*i+1 for i in [2..6])
     .reduce (ranges, n)->
       ranges.push
         max: 1 << n >>> 0
