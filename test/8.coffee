@@ -67,7 +67,7 @@ utf8.code = (buffer)->
   return buffer[0] if 1==buffer.length
   for n, i in buffer
     code = if i
-      buffer[0] & (1 << 7 - buffer.length) - 1
-    else
       code << 6 | n & 0x3F
+    else
+      buffer[0] & (1 << 7 - buffer.length) - 1
   code

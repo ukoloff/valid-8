@@ -6,6 +6,7 @@ random = require './random'
 test8 = (z)->
   assert new Buffer(a = utf8 z).toString() == String.fromCharCode z
   assert utf8.valid a
+  assert z == utf8.code a
 
 describe 'UTF-8', ->
   it 'is generated correctly', ->
