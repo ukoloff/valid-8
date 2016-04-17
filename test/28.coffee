@@ -37,7 +37,8 @@ valid = (buffer)->
 #
 # Make overlong sequence from valid one
 #
-utf8.overlong = (buffer)->
+utf8.overlong =
+overlong = (buffer)->
   return unless valid buffer
   switch x = buffer.length
     when 1
@@ -51,3 +52,7 @@ utf8.overlong = (buffer)->
   buffer[0] &= 0x7F + x
   buffer.unshift 0x100 - x
   buffer
+
+utf8.overlongs = (code)->
+  code = utf8 code if 'number'==typeof code
+  code while code = overlong code
