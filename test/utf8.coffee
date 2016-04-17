@@ -1,6 +1,6 @@
 assert = require './assert'
 
-utf8 = require './28'
+utf8 = require './8'
 random = require './random'
 
 test8 = (z)->
