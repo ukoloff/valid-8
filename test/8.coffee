@@ -1,7 +1,6 @@
 #
 # Convert to UTF-8
 #
-
 module.exports =
 utf8 = (code)->
   code &= 0xFFFFFFFF
@@ -53,6 +52,22 @@ overlong = (buffer)->
   buffer.unshift 0x100 - x
   buffer
 
+#
+# Generate all overlongs
+#
 utf8.overlongs = (code)->
   code = utf8 code if 'number'==typeof code
   code while code = overlong code
+
+#
+# Find codepoint for valid sequence
+#
+utf8.code = (buffer)->
+  return unless valid buffer
+  return buffer[0] if 1==buffer.length
+  for n, i in buffer
+    code = if i
+      buffer[0] & (1 << 7 - buffer.length) - 1
+    else
+      code << 6 | n & 0x3F
+  code
