@@ -15,3 +15,6 @@ node_js:
 cache:
   directories:
   - node_modules
+
+env:
+  utf: 8
