@@ -2,7 +2,9 @@
   "name": "others",
   "private": true,
   "dependencies": {
-    "is-utf8": "^0.2.1",
+    "is-utf8": "^0.2.1"
+  },
+  "optionalDependencies": {
     "utf-8-validate": "^1.2.1"
   }
 }
