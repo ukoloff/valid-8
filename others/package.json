@@ -1,0 +1,8 @@
+{
+  "name": "others",
+  "private": true,
+  "dependencies": {
+    "is-utf8": "^0.2.1",
+    "utf-8-validate": "^1.2.1"
+  }
+}
