@@ -23,7 +23,7 @@ lacus lectus feugiat libero, non fermentum erat nisi at risus.
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Ut pulvinar dignissim tellus, eu dignissim lorem vulputate quis.
 Morbi ut pulvinar augue.
-'''
+'''.replace /\s+/, ' '
 
   it 'should return false for an erroneous string', ->
     assert not valid8 new Buffer [0xce, 0xba, 0xe1, 0xbd, 0xb9, 0xcf, 0x83, 0xce, 0xbc, 0xce, 0xb5, 0xed, 0xa0, 0x80, 0x65, 0x64, 0x69, 0x74, 0x65, 0x64]
