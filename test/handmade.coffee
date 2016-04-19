@@ -5,6 +5,7 @@ valid8 = require '..'
 random = require './random'
 
 buffers = []
+longBuffer = 0
 
 test = (buffer)->
   buffer = new Buffer buffer unless Buffer.isBuffer buffer
@@ -28,9 +29,9 @@ describe 'Cyrillic', ->
     test 'Однажды в студёную зимнюю пору'
 
 describe 'Glass', ->
-  it 'is eatable', ->
+  it 'is edible', ->
 
-    test fs.readFileSync path.join __dirname, 'glass.html'
+    test longBuffer = fs.readFileSync path.join __dirname, 'glass.html'
 
 describe 'Coffee', ->
   it 'is drinkable', ->
@@ -53,3 +54,25 @@ describe "Buffer", ->
         new Buffer [random 128, 255],
         random.pick buffers
       ]
+    buffers = []
+
+describe 'Speed', ->
+
+  @slow 1000
+
+  it 'is found', ->
+    start = new Date
+    n = 0
+    loop
+      unless valid8 longBuffer
+        throw Error 'Unexpected fail'
+      t = new Date - start
+      n++
+      it "", ->
+      if n > 100 and t > 100
+        break
+    longBuffer = longBuffer.length * n * 1000 / t / 1024 / 1024
+
+
+after ->
+  console.log "Validation speed: #{longBuffer} Mb/s"
