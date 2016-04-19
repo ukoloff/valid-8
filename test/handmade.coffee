@@ -1,7 +1,7 @@
 fs = require 'fs'
 path = require 'path'
 assert = require './assert'
-valid8 = require '..'
+valid8 = require './valid8'
 random = require './random'
 
 buffers = []

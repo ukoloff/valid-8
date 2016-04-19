@@ -1,5 +1,5 @@
 assert = require './assert'
-valid8 = require '..'
+valid8 = require './valid8'
 random = require './random'
 
 utf8 = random.utf8
