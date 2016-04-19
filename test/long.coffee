@@ -27,3 +27,11 @@ describe 'Long sequences', ->
          assert utf8.valid q = utf8 z
          assert z == utf8.code q
          random.test4 false, q
+
+  it 'may be valid if needed', ->
+    @skip() if 4 != valid8.maxBytes
+    try
+      valid8.maxBytes = 8
+      # ...
+    finally
+      valid8.maxBytes = 4
