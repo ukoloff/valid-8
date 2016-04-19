@@ -1,6 +1,6 @@
 utf8 = require './8'
 random = require './random'
-valid8 = require '..'
+valid8 = require './valid8'
 
 describe 'Surrogates', ->
   it 'are invalid', ->

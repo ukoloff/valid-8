@@ -2,7 +2,7 @@
 # Tests borrowed from https://github.com/websockets/ws/blob/master/test/Validation.test.js
 #
 assert = require './assert'
-valid8 = require '..'
+valid8 = require './valid8'
 
 describe 'isValidUTF8', ->
   it 'should return true for a valid utf8 string', ->
