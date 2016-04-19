@@ -1,5 +1,5 @@
 assert = require './assert'
-valid8 = require '..'
+valid8 = require './valid8'
 
 module.exports = random = (min, max)->
   unless max?

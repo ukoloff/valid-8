@@ -1,12 +1,12 @@
 utf8 = require './8'
 random = require './random'
 assert = require './assert'
-valid8 = require '..'
+valid8 = require './valid8'
 
 describe 'Overlongs', ->
   it 'are invalid', ->
     [7]
-    .concat (5*i+1 for i in [2..6])
+    .concat(5*i+1 for i in [2..6])
     .reduce (ranges, n)->
       ranges.push
         max: 1 << n >>> 0
