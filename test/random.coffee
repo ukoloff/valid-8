@@ -57,7 +57,7 @@ ranges = (array)->
 #
 # Ranges used for UTF-8 random strings
 #
-bits = ranges [max: 0, 7, 8, 11, min: 0xD800, false, max: 0xDFFF, 16, max: 0x10FFFF]
+bits = ranges [min: 0, 7, 8, 11, min: 0xD800, false, max: 0xDFFF, 16, max: 0x10FFFF]
 
 #
 # Generate random UTF-8 buffer
