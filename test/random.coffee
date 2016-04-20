@@ -53,7 +53,7 @@ bits = ranges [max: 0, 7, 8, 11, min: 0xD800, false, max: 0xDFFF, 16, max: 0x10F
 #
 random.utf8 = utf8 = (n = 16)->
   z = for i in [1..n]
-    z = random.pick bits
+    z = pick bits
     random z.min, z.max
   String.fromCharCode.apply String, z
 
