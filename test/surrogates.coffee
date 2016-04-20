@@ -5,7 +5,7 @@ valid8 = require './valid8'
 describe 'Surrogates', ->
   it 'are invalid', ->
     for i in [1..108]
-      random.test4  false, utf8 random 0xD800, 0xDFFF
+      utf8.test4  false, utf8 random 0xD800, 0xDFFF
     return
 
   it 'may be valid if needed', ->
@@ -13,7 +13,7 @@ describe 'Surrogates', ->
     try
       valid8.surrogates = true
       for i in [1..108]
-        random.test4  true, utf8 random 0xD800, 0xDFFF
+        utf8.test4  true, utf8 random 0xD800, 0xDFFF
       return
     finally
       valid8.surrogates = false

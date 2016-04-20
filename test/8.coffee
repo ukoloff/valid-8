@@ -1,4 +1,11 @@
 #
+# Handmade UTF-8 operations
+#
+assert = require './assert'
+rnd = require './random'
+valid8 = require './valid8'
+
+#
 # Convert to UTF-8
 #
 module.exports =
@@ -71,3 +78,63 @@ utf8.code = (buffer)->
     else
       n & (1 << 7 - buffer.length) - 1
   code >>> 0  # Unsigned int
+
+#
+# Generate intervals array
+#
+utf8.ranges =
+ranges = (array)->
+  array
+  .map (x)->
+    if 'number' == typeof x
+      max: (2 << x - 1) - 1 >>> 0
+    else if !x
+      skip: true
+    else
+      x
+  .reduce (ranges, x, i)->
+    if i > 1
+      prev = ranges[ranges.length-1].b
+    else
+      prev = ranges
+      ranges = []
+    ranges.push
+      a: prev
+      b: x
+    ranges
+  .filter (x)->
+    !x.a.skip and !x.b.skip
+  .map (x)->
+    min: x.a.min ? x.a.max + 1
+    max: x.b.max ? x.b.min - 1
+
+#
+# Ranges used for UTF-8 random strings
+#
+bits = ranges [min: 0, 7, 8, 11, min: 0xD800, false, max: 0xDFFF, 16, max: 0x10FFFF]
+
+#
+# Generate random UTF-8 buffer
+#
+pick = rnd.pick
+range = rnd.range
+
+utf8.random =
+random = (n = 16)->
+  r = []
+  r = r.concat utf8 range pick bits for i in [1..n]
+  r
+
+#
+# Wrap fragment with random strings and test
+#
+utf8.test4 = (good, buffer)->
+  buffer = new Buffer buffer  unless Buffer.isBuffer buffer
+  for z in [0..3]
+    x = [buffer]
+    x.unshift new Buffer random 27  if z & 1
+    x.push new Buffer random 27  if z & 2
+    x = valid8 Buffer.concat x
+    x = !x unless good
+    assert x
+  return

@@ -5,12 +5,12 @@ valid8 = require './valid8'
 
 describe 'Long sequences', ->
   it 'are invalid', ->
-    random.ranges [].concat(5*i+1 for i in [5..6]).concat [32]
+    utf8.ranges [].concat(5*i+1 for i in [5..6]).concat [32]
     .forEach (range)->
        for i in [1..108]
          assert utf8.valid q = utf8 z = random.range range
          assert z == utf8.code q
-         random.test4 false, q
+         utf8.test4 false, q
 
   it 'may be valid if needed', ->
     @skip() if 4 != valid8.maxBytes
