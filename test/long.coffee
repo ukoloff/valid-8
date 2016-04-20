@@ -30,6 +30,23 @@ describe 'Long sequences', ->
            assert utf8.valid q = utf8 z = random.range range
            assert z == utf8.code q
            utf8.test4 false, q
+
+      # Very short sequences
+      valid8.maxBytes = 2
+      # 1 & 2 allowed
+      utf8.ranges [min: 0, 7, 11]
+      .forEach (range)->
+         for i in [1..108]
+           assert utf8.valid q = utf8 z = random.range range
+           assert z == utf8.code q
+           assert valid8 q
+      # 3... invalid
+      utf8.ranges [].concat(5*i+1 for i in [2..7]).concat [32]
+      .forEach (range)->
+         for i in [1..108]
+           assert utf8.valid q = utf8 z = random.range range
+           assert z == utf8.code q
+           assert not valid8 q
       # ...
     finally
       valid8.maxBytes = 4
