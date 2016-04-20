@@ -5,7 +5,7 @@ valid8 = require './valid8'
 
 describe 'Overlongs', ->
   it 'are invalid', ->
-    utf8.ranges [min: 0, 7].concat(5*i+1 for i in [2..6])
+    utf8.ranges utf8.ranges [min: 0].concat(bytes: i for i in [1..6])
     .forEach (range)->
       for i in [1..27]
         assert utf8.valid q = utf8 z = random.range range
