@@ -1,6 +1,10 @@
 assert = require './assert'
+utf8x = require './8'
 valid8 = require './valid8'
 
+#
+# Get random from range
+#
 module.exports = random = (min, max)->
   unless max?
     max = min
@@ -8,9 +12,17 @@ module.exports = random = (min, max)->
   Math.floor Math.random()*(max - min + 1) + min
 
 #
+# Get random from range as object
+#
+random.range =
+range = (range)->
+  random range.min, range.max
+
+#
 # Pick random array element
 #
-random.pick = (array)->
+random.pick =
+pick = (array)->
   array[random array.length-1]
 
 #
@@ -45,20 +57,16 @@ ranges = (array)->
 #
 # Ranges used for UTF-8 random strings
 #
-bits = ranges [max: 0, 7, 8, 11, min: 0xD800, false, max: 0xDFFF, 16, max: 0x10FFFF]
-
-bits = ranges (5*i+1 for i in [5..6]).concat [32]
-bits = ranges [min: 0, 7].concat(5*i+1 for i in [2..6])
-bits = ranges [7].concat(5*i+1 for i in [2..6]).concat [32]
+bits = ranges [min: 0, 7, 8, 11, min: 0xD800, false, max: 0xDFFF, 16, max: 0x10FFFF]
 
 #
-# Generate random UTF-8 string
+# Generate random UTF-8 buffer
 #
-random.utf8 = utf8 = (n = 16)->
-  z = for i in [1..n]
-    z = bits[random 0, bits.length - 1]
-    random z.min, z.max
-  String.fromCharCode.apply String, z
+random.utf8 =
+utf8 = (n = 16)->
+  r = []
+  r = r.concat utf8x range pick bits for i in [1..n]
+  r
 
 #
 # Wrap fragment with random strings and test
@@ -67,8 +75,8 @@ random.test4 = (good, buffer)->
   buffer = new Buffer buffer  unless Buffer.isBuffer buffer
   for z in [0..3]
     x = [buffer]
-    x.unshift new Buffer utf8 27  if x & 1
-    x.push new Buffer utf8 27  if x & 2
+    x.unshift new Buffer utf8 27  if z & 1
+    x.push new Buffer utf8 27  if z & 2
     x = valid8 Buffer.concat x
     x = !x unless good
     assert x

@@ -8,8 +8,7 @@ describe 'Overlongs', ->
     random.ranges [min: 0, 7].concat(5*i+1 for i in [2..6])
     .forEach (range)->
       for i in [1..27]
-        z = random range.min, range.max
-        assert utf8.valid q = utf8 z
+        assert utf8.valid q = utf8 z = random.range range
         assert z == utf8.code q
         utf8.overlongs q
         .forEach (overlong)->
