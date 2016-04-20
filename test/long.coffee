@@ -5,7 +5,7 @@ valid8 = require './valid8'
 
 describe 'Long sequences', ->
   it 'are invalid', ->
-    random.ranges (5*i+1 for i in [5..6]).concat [32]
+    random.ranges [].concat(5*i+1 for i in [5..6]).concat [32]
     .forEach (range)->
        for i in [1..108]
          z = random range.min, range.max
