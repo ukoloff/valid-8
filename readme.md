@@ -11,6 +11,15 @@ To be drop-in replacement for `utf-8-validate`.
 Most time and efforts were spent to develop extensive test suite
 (18 000 assertions).
 
+## Installation
+
+Install using your favorite way:
+
+  * NPM `npm install -S valid-8`
+  * Bower `bower install`
+  * RequireJS `require(['valid-8'], function(valid8){ ... })`
+  * Plain script in browser `<script src="valid-8.js"></script>`
+
 ## Testing
 
 Tests are run using mocha with regular command:

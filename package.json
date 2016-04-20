@@ -1,6 +1,6 @@
 {
   "name": "valid-8",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "Pure JavaScript implementation of UTF-8 validation",
   "scripts": {
     "prepublish": "node_modules/.bin/coffee -o . src",
