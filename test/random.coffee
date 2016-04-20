@@ -7,30 +7,62 @@ module.exports = random = (min, max)->
     min = 0
   Math.floor Math.random()*(max - min + 1) + min
 
+#
+# Pick random array element
+#
 random.pick = (array)->
   array[random array.length-1]
 
-bits = [7, 8, 11, 0xD7FF, '', 0xDFFF, 16, 0x10FFFF]
-.map (bits)->
-  if not bits or bits>0x100
-    bits
-  else
-    (1 << bits) - 1
-.reduce (ranges, n)->
-  ranges.push
-    min: ranges[ranges.length-1].max + 1
-    max: n
-  ranges
-, [min: '', max: -1]
-.filter (range)->
-  'number' == typeof(range.min + range.max)
+#
+# Generate intervals array
+#
+random.ranges =
+ranges = (array)->
+  array
+  .map (x)->
+    if 'number' == typeof x
+      max: (2 << x - 1) - 1 >>> 0
+    else if !x
+      skip: true
+    else
+      x
+  .reduce (ranges, x, i)->
+    if i > 1
+      prev = ranges[ranges.length-1].b
+    else
+      prev = ranges
+      ranges = []
+    ranges.push
+      a: prev
+      b: x
+    ranges
+  .filter (x)->
+    !x.a.skip and !x.b.skip
+  .map (x)->
+    min: x.a.min ? x.a.max + 1
+    max: x.b.max ? x.b.min - 1
 
+#
+# Ranges used for UTF-8 random strings
+#
+bits = ranges [max: 0, 7, 8, 11, min: 0xD800, false, max: 0xDFFF, 16, max: 0x10FFFF]
+
+bits = ranges (5*i+1 for i in [5..6]).concat [32]
+bits = ranges [min: 0, 7].concat(5*i+1 for i in [2..6])
+bits = ranges [7].concat(5*i+1 for i in [2..6]).concat [32]
+
+#
+# Generate random UTF-8 string
+#
 random.utf8 = utf8 = (n = 16)->
   z = for i in [1..n]
     z = bits[random 0, bits.length - 1]
     random z.min, z.max
   String.fromCharCode.apply String, z
 
+#
+# Wrap fragment with random strings and test
+#
 random.test4 = (good, buffer)->
   buffer = new Buffer buffer  unless Buffer.isBuffer buffer
   for z in [0..3]
