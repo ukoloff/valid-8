@@ -16,6 +16,13 @@ describe 'Long sequences', ->
     @skip() if 4 != valid8.maxBytes
     try
       valid8.maxBytes = 8
+      # 4..6 are valid
+      utf8.ranges [].concat(5*i+1 for i in [4..7])
+      .forEach (range)->
+         for i in [1..108]
+           assert utf8.valid q = utf8 z = random.range range
+           assert z == utf8.code q
+           utf8.test4 true, q
       # ...
     finally
       valid8.maxBytes = 4
