@@ -8,8 +8,7 @@ describe 'Long sequences', ->
     random.ranges [].concat(5*i+1 for i in [5..6]).concat [32]
     .forEach (range)->
        for i in [1..108]
-         z = random range.min, range.max
-         assert utf8.valid q = utf8 z
+         assert utf8.valid q = utf8 z = random.range range
          assert z == utf8.code q
          random.test4 false, q
 

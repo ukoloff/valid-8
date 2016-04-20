@@ -8,8 +8,7 @@ describe 'Trimmed sequences', ->
     random.ranges [7].concat(5*i+1 for i in [2..6]).concat [32]
     .forEach (range)->
       for i in [1..12]
-        z = random range.min, range.max
-        assert utf8.valid q = utf8 z
+        assert utf8.valid q = utf8 z = random.range range
         assert z == utf8.code q
         slices q, (slice)->
           assert not utf8.valid slice

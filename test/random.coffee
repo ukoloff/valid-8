@@ -2,11 +2,21 @@ assert = require './assert'
 utf8x = require './8'
 valid8 = require './valid8'
 
+#
+# Get random from range
+#
 module.exports = random = (min, max)->
   unless max?
     max = min
     min = 0
   Math.floor Math.random()*(max - min + 1) + min
+
+#
+# Get random from range as object
+#
+random.range =
+range = (range)->
+  random range.min, range.max
 
 #
 # Pick random array element
@@ -52,11 +62,10 @@ bits = ranges [max: 0, 7, 8, 11, min: 0xD800, false, max: 0xDFFF, 16, max: 0x10F
 #
 # Generate random UTF-8 buffer
 #
-random.utf8 = utf8 = (n = 16)->
+random.utf8 =
+utf8 = (n = 16)->
   r = []
-  for i in [1..n]
-    z = pick bits
-    r = r.concat utf8x random z.min, z.max
+  r = r.concat utf8x range pick bits for i in [1..n]
   r
 
 #
