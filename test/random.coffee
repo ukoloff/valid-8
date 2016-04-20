@@ -10,7 +10,8 @@ module.exports = random = (min, max)->
 #
 # Pick random array element
 #
-random.pick = (array)->
+random.pick =
+pick = (array)->
   array[random array.length-1]
 
 #
@@ -47,16 +48,12 @@ ranges = (array)->
 #
 bits = ranges [max: 0, 7, 8, 11, min: 0xD800, false, max: 0xDFFF, 16, max: 0x10FFFF]
 
-bits = ranges (5*i+1 for i in [5..6]).concat [32]
-bits = ranges [min: 0, 7].concat(5*i+1 for i in [2..6])
-bits = ranges [7].concat(5*i+1 for i in [2..6]).concat [32]
-
 #
 # Generate random UTF-8 string
 #
 random.utf8 = utf8 = (n = 16)->
   z = for i in [1..n]
-    z = bits[random 0, bits.length - 1]
+    z = random.pick bits
     random z.min, z.max
   String.fromCharCode.apply String, z
 
