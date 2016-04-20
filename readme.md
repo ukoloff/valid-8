@@ -8,7 +8,8 @@ Pure JavaScript implementation of UTF-8 validation.
 
 To be drop-in replacement for `utf-8-validate`.
 
-Most time and efforts were spent to develop extensive test suite.
+Most time and efforts were spent to develop extensive test suite
+(18 000 assertions).
 
 ## Testing
 
@@ -77,7 +78,7 @@ One can force UTF surrogates to pass test setting `valid8.surrogates = true`.
 
 To allow long sequences (say, 5 or 6 bytes), set `validate8.maxBytes` to `5` or `6`.
 7-byte sequences will always be rejected. By default `validate8.maxBytes=4`,
-and can be set to 1, 2 or 3 either. Eg, set `validate8.maxBytes=2` to disable
+and can be set to `1`, `2` or `3` either. Eg, set `validate8.maxBytes=2` to disable
 Chinese ideograms (and many other symbols).
 
 ## Rivals
