@@ -23,6 +23,13 @@ describe 'Long sequences', ->
            assert utf8.valid q = utf8 z = random.range range
            assert z == utf8.code q
            utf8.test4 true, q
+      # 7 still invalid
+      utf8.ranges [6*5+1, 32]
+      .forEach (range)->
+         for i in [1..108]
+           assert utf8.valid q = utf8 z = random.range range
+           assert z == utf8.code q
+           utf8.test4 false, q
       # ...
     finally
       valid8.maxBytes = 4
