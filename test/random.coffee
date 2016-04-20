@@ -66,8 +66,8 @@ random.test4 = (good, buffer)->
   buffer = new Buffer buffer  unless Buffer.isBuffer buffer
   for z in [0..3]
     x = [buffer]
-    x.unshift new Buffer utf8 27  if x & 1
-    x.push new Buffer utf8 27  if x & 2
+    x.unshift new Buffer utf8 27  if z & 1
+    x.push new Buffer utf8 27  if z & 2
     x = valid8 Buffer.concat x
     x = !x unless good
     assert x
