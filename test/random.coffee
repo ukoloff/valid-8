@@ -1,4 +1,5 @@
 assert = require './assert'
+utf8x = require './8'
 valid8 = require './valid8'
 
 module.exports = random = (min, max)->
@@ -49,13 +50,14 @@ ranges = (array)->
 bits = ranges [max: 0, 7, 8, 11, min: 0xD800, false, max: 0xDFFF, 16, max: 0x10FFFF]
 
 #
-# Generate random UTF-8 string
+# Generate random UTF-8 buffer
 #
 random.utf8 = utf8 = (n = 16)->
-  z = for i in [1..n]
+  r = []
+  for i in [1..n]
     z = pick bits
-    random z.min, z.max
-  String.fromCharCode.apply String, z
+    r = r.concat utf8x random z.min, z.max
+  r
 
 #
 # Wrap fragment with random strings and test

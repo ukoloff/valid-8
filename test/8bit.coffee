@@ -2,10 +2,9 @@ assert = require './assert'
 valid8 = require './valid8'
 random = require './random'
 
-utf8 = random.utf8
-
 describe 'Random utf8 strings', ->
   it 'are valid', ->
+    utf8 = random.utf8
     for i in [1..108]
       assert valid8 new Buffer utf8 20
 
