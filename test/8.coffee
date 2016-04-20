@@ -1,8 +1,8 @@
 #
 # Handmade UTF-8 operations
 #
-assert = require './assert'
 rnd = require './random'
+assert = require './assert'
 valid8 = require './valid8'
 
 #
