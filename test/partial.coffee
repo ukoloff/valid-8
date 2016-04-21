@@ -13,6 +13,7 @@ describe 'Trimmed sequences', ->
         slices q, (slice)->
           assert not utf8.valid slice
           utf8.test4 false, slice
+      return
 
 slices = (array, fn)->
   for z, i in array

@@ -15,3 +15,4 @@ describe 'Overlongs', ->
           assert utf8.valid overlong
           assert z == utf8.code overlong
           utf8.test4 false, overlong
+      return
