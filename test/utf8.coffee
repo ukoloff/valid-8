@@ -17,3 +17,4 @@ describe 'UTF-8', ->
         assert utf8.valid q = utf8 z = random.range range
         assert z == utf8.code q
         assert new Buffer(q).toString() == String.fromCharCode z
+      return
