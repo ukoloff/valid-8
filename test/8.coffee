@@ -83,15 +83,16 @@ utf8.code = (buffer)->
 # Generate intervals array
 #
 utf8.ranges =
-ranges = (array)->
-  array
+ranges = (arrays)->
+  [].concat.apply [], arguments
   .map (x)->
+    if !x
+      return skip: true
     if 'number' == typeof x
-      max: (2 << x - 1) - 1 >>> 0
-    else if !x
-      skip: true
-    else
-      x
+      x = bits: x * 5 + 1 + Number x == 1
+    if x.bits?
+      return max: (2 << x.bits - 1) - 1 >>> 0
+    x
   .reduce (ranges, x, i)->
     if i > 1
       prev = ranges[ranges.length-1].b
@@ -111,7 +112,16 @@ ranges = (array)->
 #
 # Ranges used for UTF-8 random strings
 #
-bits = ranges [min: 0, 7, 8, 11, min: 0xD800, false, max: 0xDFFF, 16, max: 0x10FFFF]
+bits = ranges
+  min: 0        # Start from 0
+  1             # 1-byte = 7 bits
+  bits: 8       # 8 bits
+  2             # 2-byte = 11 bits
+  min: 0xD800   # Start of surrogates
+  false         # Exclude interval
+  max: 0xDFFF   # End of surrogates
+  3             # 3-byte = 16 bits
+  max: 0x10FFFF # End of UTF
 
 #
 # Generate random UTF-8 buffer
