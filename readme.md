@@ -9,16 +9,7 @@ Pure JavaScript implementation of UTF-8 validation.
 To be drop-in replacement for `utf-8-validate`.
 
 Most time and efforts were spent to develop extensive test suite
-(18 000 assertions).
-
-## Installation
-
-Install using your favorite way:
-
-  * NPM `npm install -S valid-8`
-  * Bower `bower install`
-  * RequireJS `require(['valid-8'], function(valid8){ ... })`
-  * Plain script in browser `<script src="valid-8.js"></script>`
+(over 18k assertions).
 
 ## Testing
 
@@ -44,7 +35,7 @@ cd test/others
 npm install
 cd ../..
 ```
-and then run test, eg:
+and then run tests for one library, eg:
 
 ```sh
 npm test --lib=utf-8-validate
@@ -78,7 +69,8 @@ if(!valid8(new Buffer('你好，世界！')))
 }
 ```
 
-For compatibility with `utf-8-validate` `valid8.Validation.isValidUTF8 === validate8`.
+For compatibility with `utf-8-validate` alias is set
+`valid8.Validation.isValidUTF8 === validate8`.
 
 By default, `valid8` rejects UTF surrogates (0xD800-0xDFFF) and codepoints
 higher than 0x10FFFF, according to UTF specification.
