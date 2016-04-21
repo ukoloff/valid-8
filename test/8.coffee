@@ -86,15 +86,13 @@ utf8.ranges =
 ranges = (array)->
   array
   .map (x)->
-    if x.bytes
-      x = x.bytes
-      x = x * 5 + 1 + Number x == 1
+    if !x
+      return skip: true
     if 'number' == typeof x
-      max: (2 << x - 1) - 1 >>> 0
-    else if !x
-      skip: true
-    else
-      x
+      x = bits: x * 5 + 1 + Number x == 1
+    if x.bits?
+      return max: (2 << x.bits - 1) - 1 >>> 0
+    x
   .reduce (ranges, x, i)->
     if i > 1
       prev = ranges[ranges.length-1].b
@@ -114,8 +112,7 @@ ranges = (array)->
 #
 # Ranges used for UTF-8 random strings
 #
-bits = ranges [min: 0, {bytes: 1}, 8, {bytes: 2},
-  min: 0xD800, false, max: 0xDFFF, {bytes: 3}, max: 0x10FFFF]
+bits = ranges [min: 0, 1, bits: 8, 2, min: 0xD800, false, max: 0xDFFF, 3, max: 0x10FFFF]
 
 #
 # Generate random UTF-8 buffer

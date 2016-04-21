@@ -5,7 +5,7 @@ valid8 = require './valid8'
 
 describe 'Trimmed sequences', ->
   it 'are invalid', ->
-    utf8.ranges [].concat(bytes: i for i in [1..6]).concat [32]
+    utf8.ranges [1..6].concat [bits: 32]
     .forEach (range)->
       for i in [1..12]
         assert utf8.valid q = utf8 z = random.range range
