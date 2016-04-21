@@ -5,7 +5,7 @@ valid8 = require './valid8'
 
 describe 'Long sequences', ->
   it 'are invalid', ->
-    utf8.ranges [max: 0x10FFFF].concat([5..6]).concat [bits: 32]
+    utf8.ranges max: 0x10FFFF, [5..6], bits: 32
     .forEach (range)->
        for i in [1..108]
          assert utf8.valid q = utf8 z = random.range range
@@ -24,7 +24,7 @@ describe 'Long sequences', ->
            assert z == utf8.code q
            utf8.test4 true, q
       # 7 still invalid
-      utf8.ranges [6, bits: 32]
+      utf8.ranges 6, bits: 32
       .forEach (range)->
          for i in [1..108]
            assert utf8.valid q = utf8 z = random.range range
@@ -34,14 +34,14 @@ describe 'Long sequences', ->
       # Very short sequences
       valid8.maxBytes = 2
       # 1 & 2 allowed
-      utf8.ranges [min: 0].concat [1..2]
+      utf8.ranges min: 0, [1..2]
       .forEach (range)->
          for i in [1..108]
            assert utf8.valid q = utf8 z = random.range range
            assert z == utf8.code q
            assert valid8 q
       # 3... invalid
-      utf8.ranges [2..6].concat [bits: 32]
+      utf8.ranges [2..6], bits: 32
       .forEach (range)->
          for i in [1..108]
            assert utf8.valid q = utf8 z = random.range range
