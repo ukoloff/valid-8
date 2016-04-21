@@ -3,15 +3,17 @@ assert = require './assert'
 utf8 = require './8'
 random = require './random'
 
-test8 = (z)->
-  assert new Buffer(a = utf8 z).toString() == String.fromCharCode z
-  assert utf8.valid a
-  assert z == utf8.code a
-
 describe 'UTF-8', ->
   it 'is generated correctly', ->
-    for i in [1..108]
-      test8 random 0, 0xFF
-      test8 random 0x100, 0x7FF
-      test8 random 0x800, 0xD7FF
-      test8 random 0xE000, 0xFFFF
+    utf8.ranges
+      min: 0
+      [1..2]
+      min: 0xD800
+      false
+      max: 0xDFFF
+      3
+    .forEach (range)->
+      for i in [1..108]
+        assert utf8.valid q = utf8 z = random.range range
+        assert z == utf8.code q
+        assert new Buffer(q).toString() == String.fromCharCode z
