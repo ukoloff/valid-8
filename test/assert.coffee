@@ -6,5 +6,5 @@ module.exports = ->
   count++
   assert.apply @, arguments
 
-after ->
+after? ->
   console.log "\nAssertions:", count
