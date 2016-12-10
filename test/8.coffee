@@ -140,7 +140,7 @@ random = (n = 16)->
 Wrap fragment with random strings and test
 ###
 utf8.test4 = (good, arr)->
-  arr = newBuffer Buffer arr  unless Buffer.isBuffer arr
+  arr = newBuffer arr unless Buffer.isBuffer arr
   for z in [0..3]
     x = [arr]
     x.unshift newBuffer random 27  if z & 1
