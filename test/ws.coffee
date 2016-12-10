@@ -1,6 +1,7 @@
-#
-# Tests borrowed from https://github.com/websockets/ws/blob/master/test/Validation.test.js
-#
+###
+Tests borrowed from:
+https://github.com/websockets/ws/blob/master/test/Validation.test.js
+###
 assert = require './assert'
 valid8 = require './valid8'
 newBuffer = require './buffer'
@@ -27,7 +28,9 @@ Morbi ut pulvinar augue.
 '''.replace /\s+/, ' '
 
   it 'should return false for an erroneous string', ->
-    assert not valid8 newBuffer [0xce, 0xba, 0xe1, 0xbd, 0xb9, 0xcf, 0x83, 0xce, 0xbc, 0xce, 0xb5, 0xed, 0xa0, 0x80, 0x65, 0x64, 0x69, 0x74, 0x65, 0x64]
+    assert not valid8 newBuffer [
+      0xce, 0xba, 0xe1, 0xbd, 0xb9, 0xcf, 0x83, 0xce, 0xbc, 0xce,
+      0xb5, 0xed, 0xa0, 0x80, 0x65, 0x64, 0x69, 0x74, 0x65, 0x64]
 
   it 'should return true for valid cases from the autobahn test suite', ->
     assert valid8 newBuffer '\xf0\x90\x80\x80'

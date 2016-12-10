@@ -1,6 +1,6 @@
-#
-# Substitute library to test
-#
+###
+Substitute library to test
+###
 
 libs =
   "is-utf8": -> @
