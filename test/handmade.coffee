@@ -40,7 +40,7 @@ describe 'Coffee', ->
 
 describe "Pile of poo", ->
   it "is valid either", ->
-    test "💩" # "\u{1F4A9}"    # https://mathiasbynens.be/notes/javascript-unicode
+    test "💩" # "\u{1F4A9}" # https://mathiasbynens.be/notes/javascript-unicode
 
 describe "Buffer", ->
   it "is inspected entirely", ->
