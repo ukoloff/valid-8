@@ -4,7 +4,7 @@ Handmade UTF-8 operations
 rnd = require './random'
 assert = require './assert'
 valid8 = require './valid8'
-buffer = require './buffer'
+newBuffer = require './buffer'
 
 ###
 Convert to UTF-8
@@ -140,11 +140,11 @@ random = (n = 16)->
 Wrap fragment with random strings and test
 ###
 utf8.test4 = (good, arr)->
-  arr = new Buffer arr  unless Buffer.isBuffer arr
+  arr = newBuffer Buffer arr  unless Buffer.isBuffer arr
   for z in [0..3]
     x = [arr]
-    x.unshift new Buffer random 27  if z & 1
-    x.push new Buffer random 27  if z & 2
+    x.unshift newBuffer random 27  if z & 1
+    x.push newBuffer random 27  if z & 2
     x = valid8 Buffer.concat x
     x = !x unless good
     assert x
