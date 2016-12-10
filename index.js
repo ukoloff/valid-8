@@ -57,7 +57,17 @@
     isValidUTF8: valid8
   };
 
+
+  /*
+  Maximum length allowed. Can be set to 5 or 6 (or to 1, 2 or 3)
+   */
+
   valid8.maxBytes = 4;
+
+
+  /*
+  Allow Unicode surrogates (0xD800-0xDFFF)
+   */
 
   valid8.surrogates = false;
 
