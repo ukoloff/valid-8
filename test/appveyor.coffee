@@ -15,11 +15,12 @@ post = (data, path)->
   http = require 'http'
   uri = url.parse api
   data = JSON.stringify data
-  console.log 'POST', api, data
+  uri.method = 'POST'
   uri.path = path
   uri.headers =
     'Content-Type': 'application/json'
     'Content-Length': data.length
+  console.log 'POST', api, uri, data
   q = http.request uri
   q.end data
 
