@@ -23,12 +23,11 @@ post = (data, path)->
     'Content-Type': 'application/json'
     # 'Content-Length': data.length
   q = http.request uri, (res)->
-    res.on 'data', ->
-    res.on 'end', ->
+    console.log "POST response"
+    res.pipe process.stdout
   q.on 'error', ->
     console.error 'HTTP error!'
-  q.write data
-  q.end()
+  q.end data
 
 events =
   pending: 'Ignored'
