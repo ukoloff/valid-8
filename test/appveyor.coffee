@@ -17,11 +17,14 @@ post = (data, path)->
   data = JSON.stringify data
   uri.method = 'POST'
   uri.path = path
+  uri.pathname = path
   uri.headers =
     'Content-Type': 'application/json'
     'Content-Length': data.length
   console.log 'POST', api, uri, data
-  q = http.request uri
+  q = http.request uri, ->
+  q.on 'error', ->
+    console.error 'HTTP error!'
   q.end data
 
 events =
