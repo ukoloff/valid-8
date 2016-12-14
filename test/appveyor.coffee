@@ -16,17 +16,10 @@ post = (data, path)->
   uri = url.parse api
   data = JSON.stringify data
   uri.method = 'POST'
-  uri.agent = false
   uri.path = path
-  uri.pathname = path
   uri.headers =
     'Content-Type': 'application/json'
-    # 'Content-Length': data.length
-  q = http.request uri, (res)->
-    console.log "POST response"
-    res.pipe process.stdout
-  q.on 'error', ->
-    console.error 'HTTP error!'
+  q = http.request uri
   q.end data
 
 events =
@@ -36,7 +29,6 @@ events =
 
 listen = (runner)->
   path = require 'path'
-  tests = []
   for k, v of events
     do (v)->
       runner.on k, (test)->
