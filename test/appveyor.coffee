@@ -41,7 +41,7 @@ listen = (runner)->
   for k, v of events
     do (v)->
       runner.on k, (test)->
-        post
+        tests.push
           testFramework: 'mocha'
           testName: test.fullTitle()
           fileName: path.relative '', test.file
@@ -49,4 +49,6 @@ listen = (runner)->
           durationMilliseconds: test.duration
           ErrorMessage: test.err?.message
           ErrorStackTrace: test.err?.stack
-          '/api/tests'
+
+  runner.on 'end', ->
+    post tests, '/api/tests/batch'
