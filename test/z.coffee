@@ -1,6 +1,11 @@
 R = require 'mocha'
   .Runner
 
+events =
+  pending: '-'
+  pass:    '+'
+  fail:    '#'
+
 emit = R::emit
 runner = 0
 R::emit = ->
@@ -9,5 +14,13 @@ R::emit = ->
   emit.apply @, arguments
 
 intercept = (runner)->
-  runner.on 'pending', (test)->
-    console.log test.fullTitle()
+  tests = []
+  for k, v of events
+    do (v)->
+      runner.on k, (test)->
+        tests.push
+          test: test
+          status: v
+  runner.on 'end', ->
+    for t in tests
+      console.log t.status, t.test.fullTitle()
