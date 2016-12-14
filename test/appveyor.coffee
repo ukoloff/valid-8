@@ -22,8 +22,9 @@ post = (data, path)->
   uri.headers =
     'Content-Type': 'application/json'
     'Content-Length': data.length
-  console.log 'POST', api, uri, data
-  q = http.request uri, ->
+  q = http.request uri, (res)->
+    res.on 'data', ->
+    res.on 'end', ->
   q.on 'error', ->
     console.error 'HTTP error!'
   q.end data
