@@ -1,3 +1,5 @@
+path = require 'path'
+
 do intercept = ->
   R = require 'mocha'
     .Runner
@@ -21,7 +23,7 @@ listen = (runner)->
         tests.push
           testFramework: 'mocha'
           testName: test.fullTitle()
-          fileName: test.file
+          fileName: path.relative '', test.file
           outcome: v
           durationMilliseconds: test.duration
           ErrorStackTrace: test.err?.stack

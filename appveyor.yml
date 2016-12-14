@@ -19,7 +19,6 @@ platform:
   - x86
 
 install:
-  - set
   - ps: Install-Product node $env:NOV $env:PLATFORM
   - npm install
 
