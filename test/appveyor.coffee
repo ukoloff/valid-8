@@ -1,19 +1,19 @@
-R = require 'mocha'
-  .Runner
+do intercept = ->
+  R = require 'mocha'
+    .Runner
+  emit = R::emit
+  runner = 0
+  R::emit = ->
+    delete R::emit
+    listen @
+    emit.apply @, arguments
 
 events =
   pending: 'Ignored'
   pass:    'Passed'
   fail:    'Failed'
 
-emit = R::emit
-runner = 0
-R::emit = ->
-  delete R::emit
-  intercept @
-  emit.apply @, arguments
-
-intercept = (runner)->
+listen = (runner)->
   tests = []
   for k, v of events
     do (v)->
