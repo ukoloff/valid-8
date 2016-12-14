@@ -50,4 +50,5 @@ listen = (runner)->
           ErrorStackTrace: test.err?.stack
 
   runner.on 'end', ->
-    post tests, 'api/tests/batch'
+    console.log 'Final POST'
+    post tests, '/api/tests/batch'
