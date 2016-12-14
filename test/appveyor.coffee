@@ -47,5 +47,6 @@ listen = (runner)->
           fileName: path.relative '', test.file
           outcome: v
           durationMilliseconds: test.duration
+          ErrorMessage: test.err?.message
           ErrorStackTrace: test.err?.stack
           '/api/tests'

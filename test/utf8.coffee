@@ -4,7 +4,7 @@ utf8 = require './8'
 random = require './random'
 
 describe 'UTF-8', ->
-  xit 'is generated correctly', ->
+  it 'is generated correctly', ->
     utf8.ranges
       min: 0
       [1..2]
