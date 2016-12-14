@@ -16,6 +16,7 @@ post = (data, path)->
   uri = url.parse api
   data = JSON.stringify data
   uri.method = 'POST'
+  uri.agent = false
   uri.path = path
   uri.pathname = path
   uri.headers =
