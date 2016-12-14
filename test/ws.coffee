@@ -4,11 +4,10 @@ https://github.com/websockets/ws/blob/master/test/Validation.test.js
 ###
 assert = require './assert'
 valid8 = require './valid8'
-newBuffer = require './buffer'
 
 describe 'isValidUTF8', ->
   it 'should return true for a valid utf8 string', ->
-    assert valid8 newBuffer '''
+    assert valid8 Buffer.from '''
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Quisque gravida mattis rhoncus.
 Donec iaculis, metus quis varius accumsan,
@@ -28,13 +27,13 @@ Morbi ut pulvinar augue.
 '''.replace /\s+/, ' '
 
   it 'should return false for an erroneous string', ->
-    assert not valid8 newBuffer [
+    assert not valid8 Buffer.from [
       0xce, 0xba, 0xe1, 0xbd, 0xb9, 0xcf, 0x83, 0xce, 0xbc, 0xce,
       0xb5, 0xed, 0xa0, 0x80, 0x65, 0x64, 0x69, 0x74, 0x65, 0x64]
 
   it 'should return true for valid cases from the autobahn test suite', ->
-    assert valid8 newBuffer '\xf0\x90\x80\x80'
-    assert valid8 newBuffer [0xf0, 0x90, 0x80, 0x80]
+    assert valid8 Buffer.from '\xf0\x90\x80\x80'
+    assert valid8 Buffer.from [0xf0, 0x90, 0x80, 0x80]
 
   it 'should return false for erroneous autobahn strings', ->
-    assert not valid8 newBuffer [0xce, 0xba, 0xe1, 0xbd]
+    assert not valid8 Buffer.from [0xce, 0xba, 0xe1, 0xbd]
