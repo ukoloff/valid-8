@@ -21,13 +21,14 @@ post = (data, path)->
   uri.pathname = path
   uri.headers =
     'Content-Type': 'application/json'
-    'Content-Length': data.length
+    # 'Content-Length': data.length
   q = http.request uri, (res)->
     res.on 'data', ->
     res.on 'end', ->
   q.on 'error', ->
     console.error 'HTTP error!'
-  q.end data
+  q.write data
+  q.end()
 
 events =
   pending: 'Ignored'
