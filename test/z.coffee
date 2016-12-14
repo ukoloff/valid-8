@@ -2,9 +2,9 @@ R = require 'mocha'
   .Runner
 
 events =
-  pending: '-'
-  pass:    '+'
-  fail:    '#'
+  pending: 'Ignored'
+  pass:    'Passed'
+  fail:    'Failed'
 
 emit = R::emit
 runner = 0
@@ -19,8 +19,11 @@ intercept = (runner)->
     do (v)->
       runner.on k, (test)->
         tests.push
-          test: test
-          status: v
+          testFramework: 'mocha'
+          testName: test.fullTitle()
+          fileName: test.file
+          outcome: v
+          durationMilliseconds: test.duration
+          ErrorStackTrace: test.err?.stack
   runner.on 'end', ->
-    for t in tests
-      console.log t.status, t.test.fullTitle()
+    console.log JSON.stringify tests
