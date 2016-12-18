@@ -3,6 +3,7 @@ path = require 'path'
 assert = require './assert'
 valid8 = require './valid8'
 random = require './random'
+appveyor = require './appveyor'
 
 buffers = []
 longBuffer = 0
@@ -75,4 +76,5 @@ describe 'Speed', ->
 
 
 after ->
-  console.log "Validation speed: #{longBuffer} Mb/s"
+  console.log msg = "Validation speed: #{longBuffer} Mb/s"
+  appveyor.message msg

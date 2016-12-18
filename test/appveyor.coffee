@@ -39,3 +39,10 @@ listen = (runner)->
           ErrorMessage: test.err?.message
           ErrorStackTrace: test.err?.stack
           '/api/tests'
+
+exports.message = (msg)->
+  return unless api
+  post
+    category: 'info'
+    message: msg
+    '/api/build/messages'
