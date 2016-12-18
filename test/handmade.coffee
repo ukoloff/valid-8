@@ -3,7 +3,7 @@ path = require 'path'
 assert = require './assert'
 valid8 = require './valid8'
 random = require './random'
-appveyor = require './appveyor'
+appveyor = require 'appveyor-mocha'
 
 buffers = []
 longBuffer = 0

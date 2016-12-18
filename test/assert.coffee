@@ -1,5 +1,5 @@
 assert = require 'assert'
-appveyor = require './appveyor'
+appveyor = require 'appveyor-mocha'
 
 count = 0
 
