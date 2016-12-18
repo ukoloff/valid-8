@@ -6,7 +6,7 @@ intercept = ->
     listen @
     @emit.apply @, arguments
 
-do intercept if api = process.env.APPVEYOR_API_URL
+do intercept if api = process?.env.APPVEYOR_API_URL
 
 post = (data, path)->
   url = require 'url'
