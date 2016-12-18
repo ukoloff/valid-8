@@ -74,7 +74,5 @@ describe 'Speed', ->
         break
     longBuffer = longBuffer.length * n * 1000 / t / 1024 / 1024
 
-
 after ->
-  console.log msg = "Validation speed: #{longBuffer} Mb/s"
-  appveyor.message msg
+  appveyor.log "Validation speed: #{longBuffer} Mb/s"

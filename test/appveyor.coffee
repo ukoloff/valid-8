@@ -41,9 +41,14 @@ listen = (runner)->
           ErrorStackTrace: test.err?.stack
           '/api/tests'
 
-exports.message = (msg)->
+exports.message =
+message = (msg)->
   return unless api
   post
     category: 'info'
     message: msg
     '/api/build/messages'
+
+exports.log = (msg)->
+  console.log msg
+  message msg
