@@ -3,13 +3,13 @@ path = require 'path'
 assert = require './assert'
 valid8 = require './valid8'
 random = require './random'
-newBuffer = require './buffer'
+appveyor = require 'appveyor-mocha'
 
 buffers = []
 longBuffer = 0
 
 test = (buffer)->
-  buffer = newBuffer buffer unless Buffer.isBuffer buffer
+  buffer = Buffer.from buffer unless Buffer.isBuffer buffer
   buffers.push buffer = buffer
   assert valid8 buffer
 
@@ -48,11 +48,11 @@ describe "Buffer", ->
     for b in buffers
       assert not valid8 Buffer.concat [
         b,
-        newBuffer [random 128, 255]
+        Buffer.from [random 128, 255]
       ]
       assert not valid8 Buffer.concat [
         b,
-        newBuffer [random 128, 255],
+        Buffer.from [random 128, 255],
         random.pick buffers
       ]
     buffers = []
@@ -74,6 +74,5 @@ describe 'Speed', ->
         break
     longBuffer = longBuffer.length * n * 1000 / t / 1024 / 1024
 
-
 after ->
-  console.log "Validation speed: #{longBuffer} Mb/s"
+  appveyor.log "Validation speed: #{longBuffer} Mb/s"

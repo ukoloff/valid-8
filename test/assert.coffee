@@ -1,4 +1,5 @@
 assert = require 'assert'
+appveyor = require 'appveyor-mocha'
 
 count = 0
 
@@ -7,4 +8,5 @@ module.exports = ->
   assert.apply @, arguments
 
 after? ->
-  console.log "\nAssertions:", count
+  console.log ""
+  appveyor.log "Assertions: #{count}"

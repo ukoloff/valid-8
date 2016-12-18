@@ -2,7 +2,6 @@ assert = require './assert'
 
 utf8 = require './8'
 random = require './random'
-newBuffer = require './buffer'
 
 describe 'UTF-8', ->
   it 'is generated correctly', ->
@@ -17,5 +16,5 @@ describe 'UTF-8', ->
       for i in [1..108]
         assert utf8.valid q = utf8 z = random.range range
         assert z == utf8.code q
-        assert newBuffer(q).toString() == String.fromCharCode z
+        assert Buffer.from(q).toString() == String.fromCharCode z
       return

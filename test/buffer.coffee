@@ -1,5 +1,5 @@
 ###
-Buffer.from vs new Buffer
+Buffer.from polyfill
 ###
-module.exports = Buffer.from or (src)->
+Buffer.from ||= (src)->
   new Buffer src
