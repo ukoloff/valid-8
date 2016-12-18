@@ -1,10 +1,11 @@
 intercept = ->
   R = require 'mocha'
     .Runner
+  emit = R::emit
   R::emit = ->
     delete R::emit
     listen @
-    @emit.apply @, arguments
+    emit.apply @, arguments
 
 do intercept if api = process?.env.APPVEYOR_API_URL
 
