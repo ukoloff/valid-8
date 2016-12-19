@@ -1,11 +1,12 @@
 {
   "name": "valid-8",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pure JavaScript implementation of UTF-8 validation",
+  "files": ["index.js"],
   "scripts": {
-    "prepublish": "node_modules/.bin/coffee -o . src",
-    "pretest": "node_modules/.bin/coffee -o . src",
-    "test": "node_modules/.bin/mocha"
+    "prepublish": "coffee -o . src",
+    "pretest": "coffee -o . src",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
