@@ -23,7 +23,8 @@
     "node"
   ],
   "ignore": [
-    "*",
-    "!readme.md"
+    "!readme.md",
+    "!package.json",
+    "*"
   ]
 }
