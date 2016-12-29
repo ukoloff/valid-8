@@ -23,6 +23,7 @@
     "node"
   ],
   "ignore": [
-    "*"
+    "*",
+    "!readme.md"
   ]
 }
