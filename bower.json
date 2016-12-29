@@ -23,11 +23,6 @@
     "node"
   ],
   "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "src",
-    "test",
-    "tests"
+    "*"
   ]
 }
